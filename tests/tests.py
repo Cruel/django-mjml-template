@@ -136,7 +136,7 @@ class TestMJMLTemplatetag(MJMLFixtures, TestCase):
                     </mj-section>
                     <mj-section>
                         <mj-column>
-                            {# test_comment $}
+                            {# test_comment #}
                             {% for item in items %}
                                 <mj-text align="center">{{ item }}</mj-text>
                             {% endfor %}
