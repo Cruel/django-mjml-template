@@ -3,25 +3,13 @@ on:
   push:
     branches:
       - main
-    paths:
-      - "**.py"
-      - "**.txt"
-      - ".github/workflows/ci.yml"
-      - "**.toml"
-      - "tox.ini"
   pull_request:
     branches:
       - main
-    paths:
-      - "**.py"
-      - "**.txt"
-      - ".github/workflows/ci.yml"
-      - "**.toml"
-      - "tox.ini"
 
 jobs:
   test:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-22.04 # Latest doesn't having Python 3.7?
     name: Test on Python ${{ matrix.python-version }}
     strategy:
       matrix:
@@ -55,10 +43,10 @@ jobs:
         run: |
           pip install flit
           flit build
-      - name: Upload distribution packages
+      - name: Upload distribution artifact
         uses: actions/upload-artifact@v4
         with:
-          name: python-package-distributions
+          name: package-dist
           path: dist/
 
   publish-test:
@@ -73,14 +61,16 @@ jobs:
     permissions:
       id-token: write
     steps:
-      - name: Download all the dists
+      - name: Download distribution artifact
         uses: actions/download-artifact@v4
         with:
-          name: python-package-distributions
+          name: package-dist
           path: dist/
       - name: Publish distribution to TestPyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
+          verbose: true
+          skip-existing: true
           repository-url: https://test.pypi.org/legacy/
 
   publish:
@@ -96,10 +86,10 @@ jobs:
     permissions:
       id-token: write
     steps:
-      - name: Download all the dists
+      - name: Download distribution artifact
         uses: actions/download-artifact@v4
         with:
-          name: python-package-distributions
+          name: package-dist
           path: dist/
       - name: Publish distribution to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
