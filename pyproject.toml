@@ -1,6 +1,6 @@
 [project]
 name = "django-mjml-template"
-version = "1.0.0.post1"
+version = "1.0.0.post2"
 description = "Simple and fast MJML rendering for Django templates."
 readme = "README.md"
 requires-python = ">=3.7"
