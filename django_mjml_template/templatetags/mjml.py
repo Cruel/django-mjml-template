@@ -1,5 +1,5 @@
 from django import template
-from mjml import mjml2html
+from mrml import to_html
 
 register = template.Library()
 
@@ -10,7 +10,7 @@ class MJMLRenderNode(template.Node):
 
     def render(self, context) -> str:
         mjml_source = self.nodelist.render(context)
-        return mjml2html(mjml_source)
+        return to_html(mjml_source).content
 
 
 @register.tag

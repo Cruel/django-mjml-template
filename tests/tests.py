@@ -176,6 +176,16 @@ class TestMJMLTemplatetag(MJMLFixtures, TestCase):
                 {"var": "test"},
             )
 
+    def test_invalid_mjml(self) -> None:
+        with self.assertRaises(OSError):
+            render_tpl(
+                """
+                {% mjml %}
+                    <mjml><mj-body><mj-text>broken</mj-body></mjml>
+                {% endmjml %}
+                """
+            )
+
     def test_unicode(self) -> None:
         html = render_tpl(
             self.TPLS["with_text_context_and_unicode"],
