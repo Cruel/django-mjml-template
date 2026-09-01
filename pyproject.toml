@@ -35,7 +35,7 @@ classifiers = [
   "Topic :: Internet :: WWW/HTTP",
 ]
 dependencies = [
-  "mrml>=0.2.4,<0.3",
+  "mrml>=0.2.4",
   "django>=1.11",
 ]
 
