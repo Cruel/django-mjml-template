@@ -8,7 +8,8 @@ Use MJML in your Django templates. A very small and fast implementation.
 
 This
 package leverages [MRML](https://github.com/jdrouet/mrml), a Rust implementation
-of [MJML](https://github.com/mjmlio/mjml) using bindings provided by [mjml-python](https://github.com/mgd020/mjml-python).
+of [MJML](https://github.com/mjmlio/mjml), using MRML's official
+[Python bindings](https://github.com/jdrouet/mrml/tree/main/packages/mrml-python).
 
 If you want to run `MJML` itself as a separate HTTP server endpoint for conversion, use [django-mjml](https://github.com/liminspace/django-mjml) instead. It uses the same `mjml` template tag.
 
